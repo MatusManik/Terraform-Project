@@ -1,0 +1,22 @@
+# AWS Infrastructure Project (Terraform)
+
+This is my Terraform project. It sets up a complete AWS cloud infrastructure with web servers, game servers, and a database cluster.
+
+## What does this project build?
+
+* **VPC Network:** 2 public subnets (for web) and 2 private subnets (for database).
+* **Web Servers:** Auto Scaling Group behind an Application Load Balancer (scales up when CPU is busy).
+* **Game & Database Servers:** EC2 instances for gaming and NoSQL database.
+* **Security:** IAM roles, user groups, and secure access to S3 storage.
+
+## Requirements
+
+* [Terraform](https://developer.hashicorp.com/terraform/downloads) (v1.2 or newer)
+* [LocalStack](https://www.localstack.cloud/) (optional, if you want to test locally without paying AWS)
+
+## How to run it
+
+1. **Clone this repository:**
+   ```bash
+   git clone [https://github.com/YOUR-USERNAME/YOUR-REPO-NAME.git](https://github.com/YOUR-USERNAME/YOUR-REPO-NAME.git)
+   cd YOUR-REPO-NAME
