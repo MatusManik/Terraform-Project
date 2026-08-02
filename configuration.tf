@@ -12,7 +12,7 @@ terraform {
 # NOTE: This project is configured to run against LocalStack (http://localhost:4566)
 # for local testing and cost saving.
 provider "aws" {
-  region = "eu-central-1"
+  region = var.aws_region
 
 # Dummy credentials for LocalStack (not real AWS secrets)
   access_key = "test"
@@ -29,11 +29,15 @@ provider "aws" {
 
 # Redirect AWS API calls to LocalStack port 4566
   endpoints {
-    ec2 = "http://localhost:4566"
-    s3 = "http://localhost:4566"
-    iam = "http://localhost:4566"
-    sts = "http://localhost:4566"
-    elb = "http://localhost:4566"
-    elbv2 = "http://localhost:4566"
+    ec2        = "http://localhost:4566"
+    s3         = "http://localhost:4566"
+    iam        = "http://localhost:4566"
+    sts        = "http://localhost:4566"
+    elb        = "http://localhost:4566"
+    elbv2      = "http://localhost:4566"
+    wafv2      = "http://localhost:4566"
+    route53    = "http://localhost:4566"
+    cloudfront = "http://localhost:4566"
+    cloudwatch = "http://localhost:4566"
   }
 }
