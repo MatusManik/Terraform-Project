@@ -7,7 +7,7 @@ resource "aws_instance" "game_server_compute_optimized" {
     instance_type        = "c5.large"
     subnet_id            = aws_subnet.public_subnet_two.id
     key_name             = aws_key_pair.my_key_pair_for_ec2.key_name
-    vpc_security_group_ids       = [aws_security_group.game_server_compute_optimized_sg.id]
+    vpc_security_group_ids = [aws_security_group.game_server_compute_optimized_sg.id]
     iam_instance_profile = aws_iam_instance_profile.ec2_s3_access_instance_profile.name
 
     tags = {
