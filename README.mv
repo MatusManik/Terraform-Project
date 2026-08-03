@@ -4,21 +4,21 @@ This repository contains Terraform configurations to deploy a highly available, 
 
 ---
 
-## Architecture Overview
+# Architecture Overview
 
 What does this project build?
 
-* **DNS & Routing (Route 53):** Managed DNS Hosted Zone with custom Alias records for seamless domain mapping.
-* **Global Content Delivery (CloudFront):** Edge-cached Content Delivery Network (CDN) enforcing HTTPS-only traffic to speed up response times globally.
-* **Security & Protection (WAFv2):** Regional Web Application Firewall associated with the Application Load Balancer to mitigate OWASP Top 10 vulnerabilities (using AWS Managed Rules).
-* **Traffic Distribution:** Application Load Balancer (ALB) to route incoming application traffic safely to backend resources.
-* **VPC Network:** Dual-zone architecture split into public subnets (for edge/web traffic) and private subnets (for databases).
-* **Compute & Database:** Auto Scaling Group for web application servers along with dedicated EC2 instances for gaming and NoSQL workloads.
-* **Identity & Access Management:** IAM roles, user policies, and secure bucket access for S3 storage.
+-> **DNS & Routing (Route 53):** Managed DNS Hosted Zone with custom Alias records for seamless domain mapping.
+-> **Global Content Delivery (CloudFront):** Edge-cached Content Delivery Network (CDN) enforcing HTTPS-only traffic to speed up response times globally.
+-> **Security & Protection (WAFv2):** Regional Web Application Firewall associated with the Application Load Balancer to mitigate OWASP Top 10 vulnerabilities (using AWS Managed Rules).
+-> **Traffic Distribution:** Application Load Balancer (ALB) to route incoming application traffic safely to backend resources.
+-> **VPC Network:** Dual-zone architecture split into public subnets (for edge/web traffic) and private subnets (for databases).
+-> **Compute & Database:** Auto Scaling Group for web application servers along with dedicated EC2 instances for gaming and NoSQL workloads.
+-> **Identity & Access Management:** IAM roles, user policies, and secure bucket access for S3 storage.
 
 ---
 
-## Requirements
+# Requirements
 
 * [Terraform](https://developer.hashicorp.com/terraform/downloads) (v1.2 or newer)
 * [AWS CLI](https://aws.amazon.com/cli/) configured with proper credentials
@@ -26,9 +26,17 @@ What does this project build?
 
 ---
 
-## How to Run
+Quick Start:
+_-_-_ bash/powershell
+terraform init 
+terraform apply
 
-1. **Clone this repository:**
-   ```bash
-   git clone [https://github.com/YOUR-USERNAME/YOUR-REPO-NAME.git](https://github.com/YOUR-USERNAME/YOUR-REPO-NAME.git)
-   cd YOUR-REPO-NAME
+- check infra:
+terraform state list
+terraform show
+
+- destroy infra 
+terraform destroy
+
+- code validation
+terraform validate
