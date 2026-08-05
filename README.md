@@ -8,12 +8,21 @@ This repository contains Terraform configurations to deploy a highly available, 
 
 What does this project build?
 
+![Infrastructure image](./Image_of_Infrastructure.png)
+
+
 -> **DNS & Routing (Route 53):** Managed DNS Hosted Zone with custom Alias records for seamless domain mapping.
+
 -> **Global Content Delivery (CloudFront):** Edge-cached Content Delivery Network (CDN) enforcing HTTPS-only traffic to speed up response times globally.
+
 -> **Security & Protection (WAFv2):** Regional Web Application Firewall associated with the Application Load Balancer to mitigate OWASP Top 10 vulnerabilities (using AWS Managed Rules).
+
 -> **Traffic Distribution:** Application Load Balancer (ALB) to route incoming application traffic safely to backend resources.
+
 -> **VPC Network:** Dual-zone architecture split into public subnets (for edge/web traffic) and private subnets (for databases).
+
 -> **Compute & Database:** Auto Scaling Group for web application servers along with dedicated EC2 instances for gaming and NoSQL workloads.
+
 -> **Identity & Access Management:** IAM roles, user policies, and secure bucket access for S3 storage.
 
 ---
@@ -26,17 +35,18 @@ What does this project build?
 
 ---
 
-Quick Start:
+# Quick Start:
 _-_-_ bash/powershell
-terraform init 
-terraform apply
 
-- check infra:
-terraform state list
-terraform show
+* terraform init
+* terraform apply
 
-- destroy infra 
-terraform destroy
+check infra:
+* terraform state list
+* terraform show
 
-- code validation
-terraform validate
+destroy infra:
+* terraform destroy
+
+code validation:
+* terraform validate
