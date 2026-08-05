@@ -24,16 +24,6 @@ resource "aws_network_acl" "acl_of_my_vpc" {
         cidr_block = "0.0.0.0/0"
     }
 
-    # Inbound: Allow return traffic from internet clients (Ephemeral ports)
-    ingress {
-        rule_no    = 120
-        action     = "allow"
-        protocol   = "tcp"
-        from_port  = 1024
-        to_port    = 65535
-        cidr_block = "0.0.0.0/0"
-    }
-
     # Outbound: Allow responses to clients on ephemeral ports
     egress {
         rule_no    = 100
@@ -41,16 +31,6 @@ resource "aws_network_acl" "acl_of_my_vpc" {
         protocol   = "tcp"
         from_port  = 1024
         to_port    = 65535
-        cidr_block = "0.0.0.0/0"
-    }
-
-    # Outbound: Allow outgoing HTTPS connections
-    egress {
-        rule_no    = 120
-        action     = "allow"
-        protocol   = "tcp"
-        from_port  = 443
-        to_port    = 443
         cidr_block = "0.0.0.0/0"
     }
 }
