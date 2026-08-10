@@ -111,7 +111,7 @@ resource "aws_iam_policy" "normal_policy_A" {
                     "ec2:CreateTags",
                     "ec2:DeleteTags"
                 ]
-                Resource = "arn:aws:ec2:*:*:instance/*"
+                Resource = "*"
                 Condition = {
                     StringEquals = {
                         "ec2:ResourceTag/Type" = "General Purpose"
@@ -164,7 +164,7 @@ resource "aws_iam_policy" "normal_policy_B" {
                     "ec2:CreateTags",
                     "ec2:DeleteTags"
                 ]
-                Resource = "arn:aws:ec2:*:*:instance/*"
+                Resource = "*"
                 Condition = {
                     StringEquals = {
                         "ec2:ResourceTag/Type" = [
@@ -217,7 +217,7 @@ resource "aws_iam_role" "ec2_s3_access_role" {
                 Principal = {
                     Service = "ec2.amazonaws.com"
                 }
-                Action    = "sts:AssumeRole"            
+                Action = "sts:AssumeRole"            
             }
         ]
     })
