@@ -53,3 +53,21 @@ resource "aws_lb_listener" "http_listener" {
         target_group_arn = aws_lb_target_group.web_target_group.arn
     }
 }
+
+# ALB Listener Rule used to associate a target group to a listener and also specify conditions for this association
+resource "aws_lb_listener_rule" "http_listener_rule" {
+    listener_arn = aws_lb_listener.http_listener.arn
+    priority = 100
+
+    action {
+      type = "forward"
+      target_group_arn = aws_lb.web_application_load_balancer.arn
+    }
+
+    condition {
+      source_ip {
+        values = ["193.87.0.0/16", "203.0.113.5/32"]
+      }
+    }
+  
+}
