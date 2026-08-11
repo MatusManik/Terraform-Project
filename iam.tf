@@ -240,12 +240,12 @@ resource "aws_iam_policy" "ec2_s3_access_policy" {
                     "s3:GetObject"
                 ]
                 Resource = [
-                    "arn:aws:s3:::*",
-                    "arn:aws:s3:::*/*"
+                    "arn:aws:s3:::basic-storage-bucket-terraform-project/*",
+                    "arn:aws:s3:::basic-storage-bucket-terraform-project/*"
                 ]
                 Condition = {
                     StringEquals = {
-                        "aws:sourceVpce" = aws_vpc_endpoint.s3_vpc_endpoint.id
+                        "aws:SourceVpce" = aws_vpc_endpoint.s3_vpc_endpoint.id
                     }
                 }
             },
@@ -259,7 +259,7 @@ resource "aws_iam_policy" "ec2_s3_access_policy" {
                 Resource = "arn:aws:s3:::basic-storage-bucket-terraform-project/*"
                 Condition = {
                     StringEquals = {
-                        "aws:sourceVpce"                  = aws_vpc_endpoint.s3_vpc_endpoint.id
+                        "aws:SourceVpce"                  = aws_vpc_endpoint.s3_vpc_endpoint.id
                         "s3:x-amz-server-side-encryption" = "aws:kms"
                     }
                 }
