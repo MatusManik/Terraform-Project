@@ -24,6 +24,24 @@ resource "aws_network_acl" "acl_of_my_vpc" {
         cidr_block = "0.0.0.0/0"
     }
 
+    ingress {
+        rule_no    = 105
+        action     = "allow"
+        protocol   = "tcp"
+        from_port  = 80
+        to_port    = 80
+        cidr_block = "0.0.0.0/0"
+    }
+
+    ingress {
+        rule_no    = 110
+        action     = "allow"
+        protocol   = "tcp"
+        from_port  = 22
+        to_port    = 22
+        cidr_block = "${var.admin_ip}"
+    }
+
     # Outbound: Allow responses to clients on ephemeral ports
     egress {
         rule_no    = 100
@@ -39,7 +57,7 @@ resource "aws_network_acl" "acl_of_my_vpc" {
 # Controls public entry traffic to the Application Load Balancer
 resource "aws_security_group" "alb_security_group" {
     name        = "alb-Security-Group"
-    description = "Security group for Application Load Balancer which allows only HTTP and HTTPS network traffic"
+    description = "Security group for Application Load Balancer which allows SSH, HTTP and HTTPS network traffic"
     vpc_id      = aws_vpc.main_vpc.id
 
     # Allow inbound HTTPS from anywhere
@@ -56,6 +74,14 @@ resource "aws_security_group" "alb_security_group" {
         to_port     = 80
         protocol    = "tcp"
         cidr_blocks = ["0.0.0.0/0"]
+    }
+
+    # Allow inboud SSH from Admin IP
+    ingress {
+        from_port   = 22
+        to_port     = 22
+        protocol    = "tcp"
+        cidr_blocks = ["${var.admin_ip}"]
     }
 
     # Allow all outbound traffic from ALB
